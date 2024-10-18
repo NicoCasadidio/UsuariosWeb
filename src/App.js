@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import LoginComponent from './components/LoginComponent';
 import RegisterComponent from './components/RegisterComponent';
-import Usuarios from './components/UsuariosApp'
+import Usuarios from './components/UsuariosApp';
 
 function App() {
   const [showLogin, setShowLogin] = useState(true); // Controla qué componente mostrar
@@ -14,19 +14,27 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-400 flex flex-col items-center justify-center">
-      <div className="max-w-lg w-full p-4 bg-white shadow-md rounded">
+    <div className="min-h-screen bg-gradient-to-r from-gray-900 via-gray-800 to-black flex flex-col items-center justify-center px-4">
+      <div className="max-w-lg w-full bg-white shadow-lg rounded-lg p-6">
         {!isAuthenticated ? (
           <>
-            <div className="flex justify-between mb-4">
+            <div className="flex justify-between mb-6">
               <button
-                className={`px-4 py-2 ${showLogin ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-700'} rounded`}
+                className={`w-full mr-2 px-6 py-3 font-semibold rounded-lg transition-colors duration-300 ${
+                  showLogin
+                    ? 'bg-blue-600 text-white shadow-lg'
+                    : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                }`}
                 onClick={() => setShowLogin(true)}
               >
                 Iniciar Sesión
               </button>
               <button
-                className={`px-4 py-2 ${!showLogin ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-700'} rounded`}
+                className={`w-full ml-2 px-6 py-3 font-semibold rounded-lg transition-colors duration-300 ${
+                  !showLogin
+                    ? 'bg-blue-600 text-white shadow-lg'
+                    : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                }`}
                 onClick={() => setShowLogin(false)}
               >
                 Registrarse

@@ -13,7 +13,7 @@ export default function UsuariosApp() {
   const [editando, setEditando] = useState({ campo: null, mail: null });
   const [error, setError] = useState('');
 
-  const back = 'http://200.3.127.46:30012'; // Ruta al backend
+  const back = 'http://186.136.155.242:30012'; // Ruta al backend
 
   useEffect(() => {
     if (busqueda) {
@@ -289,32 +289,39 @@ export default function UsuariosApp() {
             />
             Apellido
           </label>
+          <label className="flex items-center">
+            <input
+              type="radio"
+              name="campo"
+              value="mail"
+              checked={campo === 'mail'}
+              onChange={e => setCampo(e.target.value)}
+              className="mr-2"
+            />
+            Mail
+          </label>
         </div>
 
-        <table className="w-full border border-gray-300 rounded-lg">
+        <table className="w-full text-left border-collapse">
           <thead>
-            <tr className="bg-gray-100">
-              <th className="px-4 py-2 border-b border-gray-300">Nombre</th>
-              <th className="px-4 py-2 border-b border-gray-300">Apellido</th>
-              <th className="px-4 py-2 border-b border-gray-300">Mail</th>
-              <th className="px-4 py-2 border-b border-gray-300">Teléfono</th>
+            <tr>
+              <th className="border-b-2 p-3 text-gray-700">Nombre</th>
+              <th className="border-b-2 p-3 text-gray-700">Apellido</th>
+              <th className="border-b-2 p-3 text-gray-700">Mail</th>
+              <th className="border-b-2 p-3 text-gray-700">Número de Teléfono</th>
             </tr>
           </thead>
           <tbody>
             {usuarios.map(usuario => (
-              <tr key={usuario.mail} className="text-center">
-                <td className="px-4 py-2 border-b border-gray-300">
-                  {renderCampo(usuario, 'nombre')}
-                </td>
-                <td className="px-4 py-2 border-b border-gray-300">
-                  {renderCampo(usuario, 'apellido')}
-                </td>
-                <td className="px-4 py-2 border-b border-gray-300">
-                  {renderCampo(usuario, 'mail')}
-                </td>
-                <td className="px-4 py-2 border-b border-gray-300">
-                  {renderCampo(usuario, 'numero_telefono')}
-                </td>
+              <tr
+                key={usuario.mail}
+                onClick={() => elegir(usuario.mail)}
+                className="cursor-pointer hover:bg-gray-100"
+              >
+                <td className="border-b p-3">{renderCampo(usuario, 'nombre')}</td>
+                <td className="border-b p-3">{renderCampo(usuario, 'apellido')}</td>
+                <td className="border-b p-3">{usuario.mail}</td>
+                <td className="border-b p-3">{renderCampo(usuario, 'numero_telefono')}</td>
               </tr>
             ))}
           </tbody>
